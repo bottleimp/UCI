@@ -74,15 +74,17 @@ summary(tree.model)
 table(predict(tree.model, adult[,-15]), adult[,15])
 sum(predict(tree.model, adult.test[,-15]) == adult.test[,15]) / dim(adult.test)[1]
 
+#C4.5 J48 Decision Tree Model
+library(RWeka)
+m3 <- J48(salary~., data=adult)
+summary(m3)
+sum(predict(m3, adult.test[,-15]) == adult.test[,15]) / dim(adult.test)[1]
 
-for (i in 1:14) {
-  if (class(adult[,i]) == 'factor') {
-    if (any(levels(adult.test[,i]) != levels(adult[,i]))) {
-      print(i)
-      print(levels(adult.test[,14]))
-      print(levels(adult[,14]))
-    }
-  }
-}
+
+
+
+
+
+
 
 
